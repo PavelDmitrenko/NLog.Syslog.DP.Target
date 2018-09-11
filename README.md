@@ -2,6 +2,9 @@
 
 ### Syslog target for NLog logging platform
 
+## Dependencies
+.NET Standart 2.0
+
 ## Supports
 TCP non-encrypted transport.<br />
 UDP & TLS is not supported.
