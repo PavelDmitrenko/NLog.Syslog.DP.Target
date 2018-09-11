@@ -2,12 +2,12 @@
 
 ### Syslog target for NLog logging platform
 
-## Nuget
-https://www.nuget.org/packages/NLog.Syslog.DP.Target/
-
 ## Supports
 TCP non-encrypted transport.<br />
 UDP & TLS is not supported.
+
+## Usage
+[Nuget package](https://www.nuget.org/packages/NLog.Syslog.DP.Target/)
 
 ## Settings
 Host: IP-address of syslog server (_default 127.0.0.1_)  
