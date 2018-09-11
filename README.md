@@ -1,6 +1,9 @@
 # NLog.Syslog.DP.Target
 
-Syslog target for NLog logging platform.
+### Syslog target for NLog logging platform
+
+## Nuget
+https://www.nuget.org/packages/NLog.Syslog.DP.Target/
 
 ## Supports
 TCP non-encrypted transport.<br />
