@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>NLog.Syslog.DP.Target</PackageId>
+    <Authors>Pavel Dmitrenko</Authors>
+    <Company></Company>
+    <Product>NLog.Syslog.DP.Target</Product>
+    <AssemblyName>NLog.Syslog.DP.Target</AssemblyName>
+    <RootNamespace>NLog.Syslog.DP.Target</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="4.5.9" />
+  </ItemGroup>
+
+</Project>
