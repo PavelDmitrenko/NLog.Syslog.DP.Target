@@ -7,7 +7,9 @@ TCP non-encrypted transport.<br />
 UDP & TLS is not supported.
 
 ## Usage
-[Nuget package](https://www.nuget.org/packages/NLog.Syslog.DP.Target/)
++ Install from [nuget](https://www.nuget.org/packages/NLog.Syslog.DP.Target/)
++ Add reference to extensions section in nlog config file (see example below)
++ Specify new syslog target
 
 ## Settings
 Host: IP-address of syslog server (_default 127.0.0.1_)  
