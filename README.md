@@ -3,7 +3,7 @@
 ### Syslog target for NLog logging platform
 
 ## Dependencies
-+ .NET Standart 2.0
++ .NET Standart (>= 2.0)
 + NLog (>= 4.5.9)
 
 ## Supports
