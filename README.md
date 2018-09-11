@@ -7,7 +7,7 @@
 + NLog (>= 4.5.9)
 
 ## Supports
-TCP non-encrypted transport.<br />
++ TCP non-encrypted transport.<br />
 _Note: UDP & TLS is NOT supported._
 
 ## Usage
