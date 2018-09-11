@@ -8,7 +8,7 @@
 
 ## Supports
 TCP non-encrypted transport.<br />
-UDP & TLS is not supported.
+UDP & TLS is NOT supported.
 
 ## Usage
 + Install from [nuget](https://www.nuget.org/packages/NLog.Syslog.DP.Target/)
