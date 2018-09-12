@@ -6,21 +6,24 @@
 + .NET Standart (>= 2.0)
 + NLog (>= 4.5.9)
 
-## Supports
+## Features
 + TCP non-encrypted transport.<br />
 _Note: UDP & TLS is NOT supported._
++ Correctly handles cyrrilic encoding on windows and nix platforms
 
 ## Usage
 + Install from [nuget](https://www.nuget.org/packages/NLog.Syslog.DP.Target/)
 + Add reference to extensions section in nlog config file (see example below)
 + Specify new syslog target
++ Start logging using native NLog functionality
 
 ## Settings
 Host: IP-address of syslog server (_default 127.0.0.1_)  
 Port: port of syslog server (_default 514_)
 
-## Tested on
-+ [Visual Syslog Server for Windows](http://maxbelkov.github.io/visualsyslog/)
+## Tests passed
++ Windows-hosted application → [Visual Syslog Server for Windows](http://maxbelkov.github.io/visualsyslog/)
++ CentOS-hosted application → native \*nix SysLog
 
 ## Example NLog config file:
 ```xml
