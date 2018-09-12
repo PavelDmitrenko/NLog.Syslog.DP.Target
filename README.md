@@ -7,13 +7,13 @@
 + NLog (>= 4.5.9)
 
 ## Features
-+ TCP non-encrypted transport.<br />
++ Supports TCP non-encrypted transport.<br />
 _Note: UDP & TLS is NOT supported._
 + Correctly handles cyrillic encoding on windows and \*nix platforms
 
 ## Usage
 + Install from [nuget](https://www.nuget.org/packages/NLog.Syslog.DP.Target/)
-+ Add reference to extensions section in nlog config file (see example below)
++ Add reference to extensions section in nlog config file (_see example below_)
 + Specify new syslog target
 + Start logging using native NLog functionality
 
