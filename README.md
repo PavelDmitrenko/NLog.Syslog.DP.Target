@@ -9,7 +9,7 @@
 ## Features
 + TCP non-encrypted transport.<br />
 _Note: UDP & TLS is NOT supported._
-+ Correctly handles cyrrilic encoding on windows and nix platforms
++ Correctly handles cyrillic encoding on windows and nix platforms
 
 ## Usage
 + Install from [nuget](https://www.nuget.org/packages/NLog.Syslog.DP.Target/)
