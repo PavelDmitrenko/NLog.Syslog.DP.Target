@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>NLog.Syslog.DP.Target</id>
+    <version>1.0.0.1</version>
+    <title>NLog.Syslog.DP.Target</title>
+    <authors>Pavel Dmitrenko</authors>
+    <owners>Pavel Dmitrenko</owners>
+	<requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Syslog target for NLog logging platform</description>
+    <copyright>Copyright 2018</copyright>
+    <tags>NLog Syslog</tags>
+  </metadata>
+</package>

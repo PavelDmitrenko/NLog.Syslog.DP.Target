@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace NLog.Syslog.DP.Target
@@ -32,8 +33,16 @@ namespace NLog.Syslog.DP.Target
 				int priority = (int)message.Facility * 8 + (int)message.Level;
 				string msg = $"<{priority}> {message.Text}";
 
-				var w1251= Encoding.GetEncoding(1251);
-				byte[] myByte = w1251.GetBytes($"{msg}{Environment.NewLine}");
+				Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+				Encoding encoding = Encoding.GetEncoding("utf-8");
+
+				if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+				{
+					encoding = Encoding.GetEncoding(1251);
+				}
+
+				byte[] myByte = encoding.GetBytes($"{msg}{Environment.NewLine}");
 
 				socket.Connect(endPoint);
 

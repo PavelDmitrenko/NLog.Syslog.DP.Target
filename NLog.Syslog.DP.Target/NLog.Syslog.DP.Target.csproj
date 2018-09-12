@@ -9,10 +9,15 @@
     <AssemblyName>NLog.Syslog.DP.Target</AssemblyName>
     <RootNamespace>NLog.Syslog.DP.Target</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0.2</Version>
+    <Description>Syslog target for NLog logging platform</Description>
+    <PackageProjectUrl>https://github.com/PavelDmitrenko/NLog.Syslog.DP.Target</PackageProjectUrl>
+    <PackageTags>Nlog Syslog</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="NLog" Version="4.5.9" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.3.0" />
   </ItemGroup>
 
 </Project>
