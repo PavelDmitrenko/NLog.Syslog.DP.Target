@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>NLog.Syslog.DP.Target</id>
-    <version>1.0.0.1</version>
+    <version>1.2</version>
     <title>NLog.Syslog.DP.Target</title>
     <authors>Pavel Dmitrenko</authors>
     <owners>Pavel Dmitrenko</owners>

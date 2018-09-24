@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
@@ -9,47 +7,78 @@ using System.Text;
 namespace NLog.Syslog.DP.Target
 {
 
-	public class Client
+	public class Client 
 	{
-		private readonly IPHostEntry ipHostInfo;
-		private readonly int _port;
-		private readonly string _ip;
+		private readonly Encoding _encoding;
+		private readonly IPEndPoint _endPoint;
+		private readonly Socket _socket;
 
-		public Client(string ip, int port)
+		public Client(string ip, int port, string encodingGlobal, string encodingOnLinuxOS, string encodingOnWindowsOS, string encodingOnOSXOS)
 		{
-			ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
-			_ip = ip;
-			_port = port;
+
+			IPAddress serverAddr = IPAddress.Parse(ip.Equals("localhost", StringComparison.InvariantCultureIgnoreCase) ? "127.0.0.1" : ip);
+			_endPoint = new IPEndPoint(serverAddr, port);
+
+			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+			if (!string.IsNullOrEmpty(encodingGlobal))
+			{
+				_encoding = Encoding.GetEncoding(encodingGlobal);
+			}
+			else
+			{
+				if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+					_encoding = Encoding.GetEncoding(encodingOnWindowsOS);
+
+				else if (!RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+					_encoding = Encoding.GetEncoding(encodingOnLinuxOS);
+
+				else if (!RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+					_encoding = Encoding.GetEncoding(encodingOnOSXOS);
+			}
+
+			_socket = new Socket(_endPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+
 		}
 
 		public void Send(Message message)
 		{
-			IPAddress serverAddr = IPAddress.Parse(_ip);
 
-			using (Socket socket = new Socket(serverAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp))
+			int priority = (int) message.Facility * 8 + (int) message.Level;
+			string msg = $"<{priority}> {message.Text}";
+			byte[] myByte = _encoding.GetBytes($"{msg}{Environment.NewLine}");
+
+			try
 			{
-				IPEndPoint endPoint = new IPEndPoint(serverAddr, _port);
-
-				int priority = (int)message.Facility * 8 + (int)message.Level;
-				string msg = $"<{priority}> {message.Text}";
-
-				Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-
-				Encoding encoding = Encoding.GetEncoding("utf-8");
-
-				if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+				if (!_socket.Connected)
 				{
-					encoding = Encoding.GetEncoding(1251);
+					_socket.Connect(_endPoint);
 				}
 
-				byte[] myByte = encoding.GetBytes($"{msg}{Environment.NewLine}");
+				_socket.Send(myByte);
 
-				socket.Connect(endPoint);
-
-				int bytesSent = socket.Send(myByte);
-				socket.Shutdown(SocketShutdown.Both);
-				socket.Close();
 			}
+			catch (SocketException)
+			{
+				//ignored
+			}
+			catch (Exception)
+			{
+				//ignored
+			}
+
+		}
+
+		public void CloseSocket()
+		{
+			if (_socket.Connected)
+			{
+				_socket.Shutdown(SocketShutdown.Both);
+			}
+
+			_socket.Close();
+			_socket.Dispose();
+
 		}
 
 	}

@@ -1,6 +1,4 @@
 ﻿using System;
-using NLog;
-using NLog.Config;
 using NLog.Targets;
 
 namespace NLog.Syslog.DP.Target
@@ -12,23 +10,29 @@ namespace NLog.Syslog.DP.Target
 		
 		public string Host { get; set; } = "localhost";
 		public int Port { get; set; } = 514;
+		public string EncodingGlobal { get; set; }
+		public string EncodingOnLinuxOS { get; set; } = "utf-8";
+		public string EncodingOnWindowsOS { get; set; } = "utf-8";
+		public string EncodingOnOSXOS { get; set; } = "utf-8";
+		private static Client _client;
 
 		public SyslogTarget()
 		{
 		}
 
-		protected override void Write(LogEventInfo logEvent)
+		protected override void InitializeTarget()
 		{
-			string logMessage = this.Layout.Render(logEvent);
-			Level level = _GetSyslogLevel(logEvent.Level);
-
-			_SendTheMessage(logMessage, level);
+			base.InitializeTarget();
+			_client = new Client(Host, Port, EncodingGlobal, EncodingOnLinuxOS, EncodingOnWindowsOS, EncodingOnOSXOS);
 		}
 
-		private void _SendTheMessage(string message, Level level)
+
+		protected override void Write(LogEventInfo logEvent)
 		{
-			Client c = new Client(Host, Port);
-			c.Send(new Message(Facility.User, level, message));
+			string logMessage = Layout.Render(logEvent);
+			Level level = _GetSyslogLevel(logEvent.Level);
+
+			_client.Send(new Message(Facility.User, level, logMessage));
 		}
 
 		private Level _GetSyslogLevel(LogLevel logLevel)
@@ -54,9 +58,16 @@ namespace NLog.Syslog.DP.Target
 				syslogLevel = Level.Warning;
 
 			if (syslogLevel == Level.Unknown)
-				throw new ArgumentOutOfRangeException("Unknown Syslog Level");
+				throw new ArgumentOutOfRangeException("Unknown LogLevel value");
 
 			return syslogLevel;
 		}
+
+		protected override void CloseTarget()
+		{
+			base.CloseTarget();
+			_client.CloseSocket();
+		}
+
 	}
 }
