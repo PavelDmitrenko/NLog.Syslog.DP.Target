@@ -12,6 +12,10 @@ _Note: UDP & TLS is NOT supported._
 + Correctly handles cyrillic encoding on windows and \*nix platforms
 
 ## Release history
+**v.1.3**
+* Asynchronous socket use
+* Reconnection attemps throttling (_«ReconnectAttemptInterval» setting_)
+
 **v.1.2**
 * TCP Socket reusability
 * Additional settings for multiplatform encoding support (win, linux, osx)
@@ -34,6 +38,9 @@ IP-address of syslog server (_default 127.0.0.1_)
 
 **Port**<br>
 Port of syslog server (_default 514_)
+
+**ReconnectAttemptInterval**<br>
+Pause (in seconds) beetween reconnect retries to syslog server (_default 5 seconds_)
 
 **EncodingGlobal**<br>
 Encoding used for logs if no platform-specific settings exists (_default utf-8_)
