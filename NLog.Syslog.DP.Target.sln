@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.Syslog.DP.Target", "NLog.Syslog.DP.Target.csproj", "{D3E78A98-5287-424B-80AB-C7E4EB62AD54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.Syslog.DP.Target", "NLog.Syslog.DP.Target\NLog.Syslog.DP.Target.csproj", "{D3E78A98-5287-424B-80AB-C7E4EB62AD54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests\Tests.csproj", "{9E142E1E-F8DC-41DA-9FC2-A34615A79D08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D3E78A98-5287-424B-80AB-C7E4EB62AD54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3E78A98-5287-424B-80AB-C7E4EB62AD54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3E78A98-5287-424B-80AB-C7E4EB62AD54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E142E1E-F8DC-41DA-9FC2-A34615A79D08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E142E1E-F8DC-41DA-9FC2-A34615A79D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E142E1E-F8DC-41DA-9FC2-A34615A79D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E142E1E-F8DC-41DA-9FC2-A34615A79D08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

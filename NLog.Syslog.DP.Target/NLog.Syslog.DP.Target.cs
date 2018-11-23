@@ -10,10 +10,13 @@ namespace NLog.Syslog.DP.Target
 		
 		public string Host { get; set; } = "localhost";
 		public int Port { get; set; } = 514;
-		public string EncodingGlobal { get; set; }
+		public string EncodingGlobal { get; set; } = "utf-8";
 		public string EncodingOnLinuxOS { get; set; } = "utf-8";
 		public string EncodingOnWindowsOS { get; set; } = "utf-8";
 		public string EncodingOnOSXOS { get; set; } = "utf-8";
+		public int ReconnectAttemptInterval { get; set; } = 5000;
+		public int SocketConnectTimeout { get; set; } = 5000;
+
 		private static Client _client;
 
 		public SyslogTarget()
@@ -23,9 +26,15 @@ namespace NLog.Syslog.DP.Target
 		protected override void InitializeTarget()
 		{
 			base.InitializeTarget();
-			_client = new Client(Host, Port, EncodingGlobal, EncodingOnLinuxOS, EncodingOnWindowsOS, EncodingOnOSXOS);
+			_client = new Client(serverAddress: Host, 
+								port: Port, 
+								socketConnectTimeout: SocketConnectTimeout, 
+								reconnectAttemptInterval: ReconnectAttemptInterval, 
+								encodingGlobal: EncodingGlobal, 
+								encodingOnLinuxOS: EncodingOnLinuxOS, 
+								encodingOnWindowsOS: EncodingOnWindowsOS, 
+								encodingOnOSXOS: EncodingOnOSXOS);
 		}
-
 
 		protected override void Write(LogEventInfo logEvent)
 		{

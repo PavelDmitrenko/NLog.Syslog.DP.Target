@@ -9,10 +9,14 @@
     <AssemblyName>NLog.Syslog.DP.Target</AssemblyName>
     <RootNamespace>NLog.Syslog.DP.Target</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0.2</Version>
+    <Version>1.4</Version>
     <Description>Syslog target for NLog logging platform</Description>
     <PackageProjectUrl>https://github.com/PavelDmitrenko/NLog.Syslog.DP.Target</PackageProjectUrl>
     <PackageTags>Nlog Syslog</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
